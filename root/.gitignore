@@ -3,9 +3,7 @@
 # may need to uncomment, add, or remove rules.
 
 # Place local settings in settings.local.php
-/web/sites/*/settings.local.php
-/web/sites/*/services*.yml
-!/web/sites/*/services.yml
+/web/sites/*
 
 # Ignore paths that contain user-generated content.
 /web/sites/*/files
