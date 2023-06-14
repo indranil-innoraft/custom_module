@@ -1,0 +1,7 @@
+name: My Module
+type: module
+core_version_requirement: ^9 || ^10
+description: My first drupal module.
+package: Custom Module
+dependencies:
+  - drupal:user
