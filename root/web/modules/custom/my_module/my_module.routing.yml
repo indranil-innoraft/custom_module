@@ -3,4 +3,4 @@ mymoduel.show_user_name:
   defaults:
     _controller: '\Drupal\my_module\Controller\FirstController::getWelcomeMessage'
   requirements:
-    _permission: show welcome page
+    _permission: static permission 1
