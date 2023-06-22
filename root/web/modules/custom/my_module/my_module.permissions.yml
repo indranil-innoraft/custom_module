@@ -1,0 +1,3 @@
+static permission 1:
+  title: show welcome page
+  description: 'Gives static permissions to the users.'
