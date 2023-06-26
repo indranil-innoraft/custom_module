@@ -1,0 +1,6 @@
+name: Form
+type: module
+core_version_requirement: ^9 || ^10
+description: Testing Form API.
+package: Custom Module
+configure: form.config_routing
