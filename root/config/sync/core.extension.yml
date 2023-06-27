@@ -30,6 +30,7 @@ module:
   my_module: 0
   mysql: 0
   node: 0
+  one_time_login_link: 0
   options: 0
   page_cache: 0
   path: 0

@@ -1,0 +1,7 @@
+one_time_login_link.config_route:
+  path: /admin/uli
+  defaults:
+    _form: \Drupal\one_time_login_link\Form\ConfigForm
+    _title: Generate Login Link
+  requirements:
+    _role: administrator
