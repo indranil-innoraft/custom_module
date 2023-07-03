@@ -50,7 +50,7 @@ class ConfigAjaxForm extends ConfigFormBase {
       '#title' => $this->t('Full Name'),
       '#size' => 30,
       '#description' => 'Please enter your full name.',
-      '#suffix' => '<span id="name-error"></span>',
+      '#suffix' => '<span id="name-error" class="error"></span>',
     ];
 
     $form['phone'] = [
@@ -87,6 +87,11 @@ class ConfigAjaxForm extends ConfigFormBase {
         'callback' => '::validateWithAjax',
       ]
     ];
+
+    $form['status'] = [
+      '#type' => 'markup',
+      '#markup' => '<span id="status"></span>',
+    ];
     return $form;
   }
 
@@ -99,11 +104,18 @@ class ConfigAjaxForm extends ConfigFormBase {
    */
   public function validateWithAjax(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
+    //Removing the previous errors.
+    $response->addCommand(new HtmlCommand('.error', ''));
     if (!$this->validate($form_state)) {
-      foreach ($this->errorMessags as $key => $value) {
+      foreach ($this->errorMessages as $key => $value) {
         $response->addCommand(new CssCommand('#' . $key . '-error', ['color' => 'red']));
         $response->addCommand(new HtmlCommand('#' . $key . '-error', $value));
       }
+    }
+    else {
+      $this->configSave($form, $form_state);
+      $response->addCommand(new CssCommand('#status', ['color' => 'green']));
+      $response->addCommand(new HtmlCommand('#status', t('Configuration save successfully.')));
     }
     return $response;
   }
@@ -113,7 +125,7 @@ class ConfigAjaxForm extends ConfigFormBase {
    * {@inheritDoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-
+    return $form;
   }
 
 
@@ -121,21 +133,34 @@ class ConfigAjaxForm extends ConfigFormBase {
    * To validate user data submitted by the form
    *
    * @param FormStateInterface $form_state
-   * @return array
+   * @return boolean
    */
   public function validate(FormStateInterface $form_state) {
     $name = $form_state->getValue('name');
     $phone = $form_state->getValue('phone');
     $email = $form_state->getValue('email');
-    if (preg_match('/[^a-zA-Z\s]/', $name)) {
-      $this->errorMessages['name'] = 'This appear to be that that ' . $name . ' is not valid.';
+
+    if (!$name) {
+      $this->errorMessages['name'] = 'Name is required.';
     }
-    if (preg_match('/[^0-9]/', $phone) && strlen($phone)!= 10) {
-      $this->errorMessages['phone'] = 'This appear to be that that ' . $phone . ' is not valid.';
+    else if (!preg_match('/^[a-zA-Z ]*$/', $name)) {
+      $this->errorMessages['name'] = 'This appear to be that name is not valid.';
     }
-    if (!((\Drupal::service('email.validator')->isValid($email)) && $this->isEmailDomainValid($email))) {
-      $this->errorMessages['email'] = 'This appear to be that that ' . $email . ' is not valid.';
+
+    if(!$phone) {
+      $this->errorMessages['phone'] = 'Phone number is required.';
     }
+    else if (!preg_match('/^[0-9]{10}$/', $phone)) {
+      $this->errorMessages['phone'] = 'This appear to be that phone is not valid.';
+    }
+
+    if (!$email) {
+      $this->errorMessages['email'] = 'Email is required.';
+    }
+    else if (!((\Drupal::service('email.validator')->isValid($email)) && $this->isEmailDomainValid($email))) {
+      $this->errorMessages['email'] = 'This appear to be that email is not valid.';
+    }
+
     if (count($this->errorMessages) == 0) {
       return TRUE;
     }
@@ -159,9 +184,13 @@ class ConfigAjaxForm extends ConfigFormBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Svae the configuration
+   *
+   * @param array $form
+   * @param FormStateInterface $form_state
+   * @return void
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function configSave(array &$form, FormStateInterface $form_state) {
     $name = $form_state->getValue('name');
     $phone = $form_state->getValue('phone');
     $email = $form_state->getValue('email');
@@ -172,8 +201,12 @@ class ConfigAjaxForm extends ConfigFormBase {
     $config->set('Email', $email);
     $config->set('Gender', $gender);
     $config->save();
-    \Drupal::messenger()->addMessages(t('Configuration saved successfully.'));
-    parent::submitForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     return $form;
   }
 }

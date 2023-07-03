@@ -110,7 +110,7 @@ public function isEmailDomainValid(string $email) {
  *
  * @param array $error
  * @param string $key
- * @return markup
+ * @return void
  */
 public function displayErrorMessage(array &$error, string $key, FormStateInterface $form_state) {
   $form_state->setErrorByName($key, $this->t($error[$key]));
