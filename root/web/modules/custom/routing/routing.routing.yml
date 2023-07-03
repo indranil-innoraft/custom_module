@@ -1,0 +1,7 @@
+routing.welcome_page:
+  path: /basic-welcome
+  defaults:
+    _controller: Drupal\routing\Controller\RoutingController::build
+    _title: 'Basic Welcome Page'
+  requirements:
+    _role: administrator+content_editor
