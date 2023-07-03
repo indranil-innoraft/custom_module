@@ -39,4 +39,17 @@ class RoutingController extends ControllerBase {
       return AccessResult::forbidden();
     }
   }
+
+ /**
+  * Fetch dynamic parameter form the url.
+  *
+  * @param integer $value
+  * @return array
+  */
+  public function fetchDynamicParameter(int $value) {
+    return [
+      '#type' => 'markup',
+      '#markup' => t('Campaign value is @value', ['@value' => $value]),
+    ];
+  }
 }
