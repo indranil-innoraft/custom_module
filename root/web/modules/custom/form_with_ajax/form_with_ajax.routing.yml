@@ -1,0 +1,7 @@
+form_with_ajax.config_routing:
+  path: /admin/config/ajax-registration
+  defaults:
+    _form: \Drupal\form_with_ajax\Form\ConfigAjaxForm
+    _title: Registration Form With Ajax
+  requirements:
+    _permission: access ajax registration form
