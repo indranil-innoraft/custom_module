@@ -5,3 +5,4 @@ routing.welcome_page:
     _title: 'Basic Welcome Page'
   requirements:
     _permission: access the custom page
+    _custom_access: Drupal\routing\Controller\RoutingController::accessCheck
