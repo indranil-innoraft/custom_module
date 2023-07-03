@@ -4,4 +4,4 @@ routing.welcome_page:
     _controller: Drupal\routing\Controller\RoutingController::build
     _title: 'Basic Welcome Page'
   requirements:
-    _role: administrator+content_editor
+    _permission: access the custom page
