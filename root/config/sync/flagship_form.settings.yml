@@ -1,0 +1,29 @@
+data:
+  -
+    title: 'HCL SUMDAY'
+    label1: Habibation
+    value1: '2136'
+    label2: People
+    value2: '2400000'
+    remove: 'Remove This'
+  -
+    title: 'HCL TECH GRANT'
+    label1: People
+    value1: '1800000'
+    label2: Vilage
+    value2: '250000'
+    remove: 'Remove This'
+  -
+    title: 'HCL UDAY'
+    label1: People
+    value1: '890000'
+    label2: 'HCL CITY'
+    value2: '325666'
+    remove: 'Remove This'
+  -
+    title: 'HCL MY HEART'
+    label1: People
+    value1: '356000'
+    label2: Vilage
+    value2: '364000'
+    remove: 'Remove This'
