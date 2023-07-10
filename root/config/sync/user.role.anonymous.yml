@@ -8,6 +8,7 @@ dependencies:
     - comment
     - contact
     - filter
+    - routing
     - search
     - system
 _core:
@@ -20,5 +21,6 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'access the custom page'
   - 'search content'
   - 'use text format restricted_html'

@@ -5,6 +5,7 @@ dependencies:
   config:
     - filter.format.basic_html
   module:
+    - block_api
     - comment
     - contact
     - filter
@@ -22,6 +23,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'administer block_api configuration'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
