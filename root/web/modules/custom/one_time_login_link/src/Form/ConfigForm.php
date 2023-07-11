@@ -2,19 +2,61 @@
 
 namespace Drupal\one_time_login_link\form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\CssCommand;
-use Drupal\user\Entity\User;
+use Drupal\Core\Session\AccountInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConfigForm extends ConfigFormBase {
 
   /**
+   * It contains the users data.
+   *
+   * @var object
+   */
+  protected $userStorage;
+
+  /**
+   * Stores the current user object.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $currentUser;
+
+  /**
+   * Consturct the class member variables.
+   *
+   * @param AccountInterface $current_user
+   * @param EntityTypeManagerInterface $entity_type_manager
+   * @param ConfigFactoryInterface $config_factory
+   */
+  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory)
+  {
+    $this->currentUser = $current_user;
+    $this->userStorage = $entity_type_manager->getStorage('user');
+    $this->configFactory = $config_factory;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container)
+  {
+    return new static($container->get('current_user'),
+    $container->get('entity_type.manager'),
+    $container->get('config.factory'));
+  }
+
+
+  /**
    * Store configuration file name.
    */
-  private string $configFileName = 'one_time_login_link.settings';
+  private string $CONFIG_FILE_NAME = 'one_time_login_link.settings';
 
   /**
    * {@inheritDoc}
@@ -28,7 +70,7 @@ class ConfigForm extends ConfigFormBase {
  */
   public function getEditableConfigNames() {
     return [
-      $this->configFileName,
+      $this->CONFIG_FILE_NAME,
     ];
   }
 
@@ -67,8 +109,8 @@ class ConfigForm extends ConfigFormBase {
   public function generateOneTimeLoginLink(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $user_id = $form_state->getValue('user_id');
-    $account = User::load($user_id);
-    $current_user_id = \Drupal::currentUser()->id();
+    $account = $this->userStorage->load($user_id);
+    $current_user_id = $this->currentUser()->id();
     $flag = FALSE;
     if (is_null($account)) {
       $message = 'User not exists.';
@@ -107,7 +149,7 @@ class ConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $user_id = $form_state->getValue('user_id');
-    $config = $this->config($this->configFileName);
+    $config = $this->configFactory()->getEditable($this->CONFIG_FILE_NAME);
     $config->set('User Id', $user_id);
     $config->save();
     return $form;

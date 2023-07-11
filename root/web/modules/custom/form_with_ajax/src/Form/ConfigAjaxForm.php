@@ -7,23 +7,77 @@
 
 namespace Drupal\form_with_ajax\form;
 
+use Drupal\Component\Utility\EmailValidatorInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Messenger\MessengerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConfigAjaxForm extends ConfigFormBase {
 
   /**
+   * It contains the configuration data.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * It contains the messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * It contains the email validator service.
+   *
+   * @var \Drupal\Component\Utility\EmailValidatorInterface
+   */
+  protected $emailValidator;
+
+  /**
    * Contains the configuration file name.
    */
-  private string $configFileName = 'form_with_ajax.settings';
+  private string $CONFIG_FILE_NAME = 'form_with_ajax.settings';
 
   /**
    * Contains All the error messages.
    */
   public $errorMessages = [];
+
+  /**
+   * Construct an configForm object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *  The configuration.
+   * @param MessengerInterface $messenger
+   *  The messenger service.
+   * @param EmailValidatorInterface $email_validator
+   *  The email validator service.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, MessengerInterface $messenger, EmailValidatorInterface $email_validator)
+  {
+    $this->configFactory = $config_factory;
+    $this->messenger = $messenger;
+    $this->emailValidator = $email_validator;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function create(ContainerInterface $container)
+  {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('messenger'),
+      $container->get('email.validator'),
+    );
+  }
 
   /**
    * {@inheritDoc}
@@ -37,7 +91,7 @@ class ConfigAjaxForm extends ConfigFormBase {
  */
   public function getEditableConfigNames() {
     return [
-      $this->configFileName,
+      $this->CONFIG_FILE_NAME,
     ];
   }
 
@@ -157,7 +211,7 @@ class ConfigAjaxForm extends ConfigFormBase {
     if (!$email) {
       $this->errorMessages['email'] = 'Email is required.';
     }
-    else if (!((\Drupal::service('email.validator')->isValid($email)) && $this->isEmailDomainValid($email))) {
+    else if (!(($this->emailValidator->isValid($email)) && $this->isEmailDomainValid($email))) {
       $this->errorMessages['email'] = 'This appear to be that email is not valid.';
     }
 
@@ -195,7 +249,7 @@ class ConfigAjaxForm extends ConfigFormBase {
     $phone = $form_state->getValue('phone');
     $email = $form_state->getValue('email');
     $gender = $form_state->getValue('gender_radio');
-    $config = $this->config($this->configFileName);
+    $config = $this->configFactory()->getEditable($this->CONFIG_FILE_NAME);
     $config->set('Name', $name);
     $config->set('Phone', $phone);
     $config->set('Email', $email);

@@ -2,15 +2,50 @@
 
 namespace Drupal\one_time_login_link\form;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\CssCommand;
-use Drupal\user\Entity\User;
+use Drupal\Core\Session\AccountInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GenericForm extends FormBase
 {
+
+  /**
+   * It contains the users data.
+   *
+   * @var object
+   */
+  protected $userStorage;
+
+  /**
+   * Stores the current user object.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $currentUser;
+
+  /**
+   * Consturct the class member variables.
+   *
+   * @param AccountInterface $current_user
+   * @param EntityTypeManagerInterface $entity_type_manager
+   */
+  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager) {
+    $this->currentUser = $current_user;
+    $this->userStorage = $entity_type_manager->getStorage('user');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container)
+  {
+    return new static($container->get('current_user'), $container->get('entity_type.manager'));
+  }
 
   /**
    * {@inheritDoc}
@@ -57,8 +92,8 @@ class GenericForm extends FormBase
   {
     $response = new AjaxResponse();
     $user_id = $form_state->getValue('user_id');
-    $account = User::load($user_id);
-    $current_user_id = \Drupal::currentUser()->id();
+    $account = $this->userStorage->load($user_id);
+    $current_user_id = $this->currentUser()->id();
     $flag = FALSE;
     if (is_null($account)) {
       $message = 'User not exists.';

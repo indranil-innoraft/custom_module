@@ -7,10 +7,62 @@
 
 namespace Drupal\form\form;
 
+use Drupal\Component\Utility\EmailValidatorInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConfigForm extends ConfigFormBase {
+
+  /**
+   * It contains the configuration data.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * It contains the messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * It contains the email validator service.
+   *
+   * @var \Drupal\Component\Utility\EmailValidatorInterface
+   */
+  protected $emailValidator;
+
+  /**
+   * Construct an configForm object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *  The configuration.
+   * @param MessengerInterface $messenger
+   *  The messenger service.
+   * @param EmailValidatorInterface $email_validator
+   *  The email validator service.
+   */
+  public function __construct(\Drupal\Core\Config\ConfigFactoryInterface $config_factory, MessengerInterface $messenger, EmailValidatorInterface $email_validator) {
+    $this->configFactory = $config_factory;
+    $this->messenger = $messenger;
+    $this->emailValidator = $email_validator;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function create(ContainerInterface $container)
+  {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('messenger'),
+      $container->get('email.validator'),
+    );
+  }
 
   /**
    * Contains the configuration file name.
@@ -83,7 +135,7 @@ class ConfigForm extends ConfigFormBase {
       $error_message['phone'] = 'This appear to be that that ' . $phone . ' is not valid.';
       $this->displayErrorMessage($error_message, 'phone', $form_state);
     }
-    if (!((\Drupal::service('email.validator')->isValid($email)) && $this->isEmailDomainValid($email))) {
+    if (!(($this->emailValidator->isValid($email)) && $this->isEmailDomainValid($email))) {
       $error_message['email'] = 'This appear to be that that ' . $email . ' is not valid.';
       $this->displayErrorMessage($error_message, 'email', $form_state);
     }
@@ -93,6 +145,7 @@ class ConfigForm extends ConfigFormBase {
  * To check user email address is in public domain or not.
  *
  * @param string $email
+ *
  * @return boolean
  */
 public function isEmailDomainValid(string $email) {
@@ -110,6 +163,7 @@ public function isEmailDomainValid(string $email) {
  *
  * @param array $error
  * @param string $key
+ * @param FormStateInterface $form_state
  * @return void
  */
 public function displayErrorMessage(array &$error, string $key, FormStateInterface $form_state) {
@@ -124,13 +178,13 @@ public function displayErrorMessage(array &$error, string $key, FormStateInterfa
     $phone = $form_state->getValue('phone');
     $email = $form_state->getValue('email');
     $gender = $form_state->getValue('gender_radio');
-    $config = $this->config($this->CONFIG_FILE_NAME);
+    $config = $this->configFactory()->getEditable($this->CONFIG_FILE_NAME);
     $config->set('Name', $name);
     $config->set('Phone', $phone);
     $config->set('Email', $email);
     $config->set('Gender', $gender);
     $config->save();
-    \Drupal::messenger()->addMessage(t('Configuration saved successfully.'));
+    $this->messenger->addMessage($this->t('Configuration saved successfully.'));
     parent::submitForm($form, $form_state);
   }
 }
