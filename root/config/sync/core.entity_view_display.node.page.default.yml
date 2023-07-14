@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_new_color
     - node.type.page
   module:
+    - custom_color
     - text
     - user
 _core:
@@ -22,7 +24,16 @@ content:
     third_party_settings: {  }
     weight: 100
     region: content
+  field_new_color:
+    type: custom_color_hextohex
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
   links:
+    settings: {  }
+    third_party_settings: {  }
     weight: 101
     region: content
 hidden: {  }
