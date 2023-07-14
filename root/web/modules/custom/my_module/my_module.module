@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implemented hook_node_view_first_time().
+ */
+function my_module_node_view_first_time($current_count, \Drupal\node\NodeInterface $node) {
+  $messenger = \Drupal::service('messenger');
+  if ($current_count === 1) {
+    $messenger->addMessage(t('You have visited @node first time.', ['@node' => $node->label()]));
+  }
+}
+
+/**
+ * Implemented hook_ENTITY_TYPE_view().
+ */
+function my_module_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  $session = \Drupal::service('session');
+  $module_handler = \Drupal::service('module_handler');
+  $current_count = $session->get('my_module.view_count', array());
+  if (!isset($current_count[$entity->id()])) {
+    $current_count[$entity->id()] = 1;
+  }
+  else {
+    $current_count[$entity->id()]++;
+  }
+  $session->set('my_module.view_count', $current_count);
+  $module_handler->invokeAll("node_view_first_time", [$current_count[$entity->id()], $entity]);
+  $build['number_count'] = [
+    '#markup' => '<b>' . t('You have viewed this node @time in this session.',
+    ['@time' => $current_count[$entity->id()]]) . '</b>',
+    '#cache' => [
+      'max-age' => 0,
+    ],
+  ];
+}

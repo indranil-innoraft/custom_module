@@ -1,0 +1,22 @@
+<?php
+
+use Drupal\user\Entity\Role;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implemented hook_entity_access()
+ */
+ function routing_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  $current_route = \Drupal::routeMatch()->getRouteName();
+  $role = Role::load('content_editor');
+  if ($current_route == 'routing.welcome_page') {
+    if ($role) {
+      $role->revokePermission('access the custom page');
+      $role->save();
+      //Reload the same page to show the changes.
+      $current_url = \Drupal::request()->getRequestUri();
+      $response = new RedirectResponse($current_url);
+      $response->send();
+    }
+  }
+ }

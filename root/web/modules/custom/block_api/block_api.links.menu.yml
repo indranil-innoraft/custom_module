@@ -1,0 +1,5 @@
+block_api.config:
+  title: Flagship Programmes
+  description: Showing a banner.
+  route_name: block_api.config
+  weight: 10

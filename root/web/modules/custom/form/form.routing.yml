@@ -1,0 +1,7 @@
+form.config_routing:
+  path: /admin/config/registration
+  defaults:
+    _form: \Drupal\form\Form\ConfigForm
+    _title: Registration Form
+  requirements:
+    _permission: access registration form

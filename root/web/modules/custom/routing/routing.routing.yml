@@ -1,0 +1,16 @@
+routing.welcome_page:
+  path: /basic-welcome
+  defaults:
+    _controller: Drupal\routing\Controller\RoutingController::build
+    _title: 'Basic Welcome Page'
+  requirements:
+    _permission: access the custom page
+    _custom_access: Drupal\routing\Controller\RoutingController::accessCheck
+
+routing.fetching_dynamic_value:
+  path: /campaign/value/{value}
+  defaults:
+    _controller: Drupal\routing\Controller\RoutingController::fetchDynamicParameter
+    _title: 'Fetching Dynamic Value'
+  requirements:
+    _permission: access content
