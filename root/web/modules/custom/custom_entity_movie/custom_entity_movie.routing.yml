@@ -1,0 +1,32 @@
+entity.award_winning_movie.collection:
+  path: '/admin/structure/award-winning-movie'
+  defaults:
+    _entity_list: 'award_winning_movie'
+    _title: 'Award Winning Movie configuration'
+  requirements:
+    _permission: 'administer award_winning_movie'
+
+entity.award_winning_movie.add_form:
+  path: '/admin/structure/award_winning_movie/add'
+  defaults:
+    _entity_form: 'award_winning_movie.add'
+    _title: 'Add an award winning movie'
+  requirements:
+    _permission: 'administer award_winning_movie'
+
+entity.award_winning_movie.edit_form:
+  path: '/admin/structure/award-winning-movie/{award_winning_movie}'
+  defaults:
+    _entity_form: 'award_winning_movie.edit'
+    _title: 'Edit an award winning movie'
+  requirements:
+    _permission: 'administer award_winning_movie'
+
+entity.award_winning_movie.delete_form:
+  path: '/admin/structure/award-winning-movie/{award_winning_movie}/delete'
+  defaults:
+    _entity_form: 'award_winning_movie.delete'
+    _title: 'Delete an award winning movie'
+  requirements:
+    _permission: 'administer award_winning_movie'
+

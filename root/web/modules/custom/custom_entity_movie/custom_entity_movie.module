@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Delete nodes associated with the module.
+ */
+function custom_entity_movie_delete_nodes() {
+  $ids = \Drupal::entityQuery('node')->condition('type', 'movie')->execute();
+$storageHandler = \Drupal::entityTypeManager()->getStorage('node');
+$entities = $storageHandler->loadMultiple($ids);
+foreach ($entities as $entity) {
+  $entity->delete();
+}
+}
