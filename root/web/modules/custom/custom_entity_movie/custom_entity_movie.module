@@ -11,3 +11,25 @@ foreach ($entities as $entity) {
   $entity->delete();
 }
 }
+
+/**
+ * Implements hook_node_view().
+ */
+function custom_entity_movie_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $node, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  $movie_price = (int) $node->get('field_movie_price')->value;
+  $budget_friendly_movie_price = (int)\Drupal::config('custom_entity_movie.settings')->get('budget_friendly_ammout');
+  if ($node->getType() === 'movie') {
+    if ($movie_price < $budget_friendly_movie_price) {
+      $message = 'The movie is under budget';
+    }
+    elseif ($movie_price > $budget_friendly_movie_price) {
+      $message = 'The movie is over budget';
+    }
+    else {
+      $message = 'The movie is within budget';
+    }
+  }
+  $build['content'] = [
+  '#markup' => '<b>' . $message . '<br></b>',
+  ];
+}

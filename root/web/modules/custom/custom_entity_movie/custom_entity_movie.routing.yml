@@ -30,3 +30,11 @@ entity.award_winning_movie.delete_form:
   requirements:
     _permission: 'administer award_winning_movie'
 
+
+custom_entity_movie.movie_budget:
+  path: '/admin/config/system/movie-budget'
+  defaults:
+    _title: 'Movie Budget'
+    _form: 'Drupal\custom_entity_movie\Form\MovieBudgetForm'
+  requirements:
+    _role: content_editor+administrator

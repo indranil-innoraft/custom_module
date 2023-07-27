@@ -18,3 +18,12 @@ custom_entity_movie.award_winning_movie.*:
     movie_name:
       type: string
       label: Movie Name
+
+# Schema for the configuration files of the Movie Entity module.
+custom_entity_movie.settings:
+  type: config_object
+  label: 'Movie Entity settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'
