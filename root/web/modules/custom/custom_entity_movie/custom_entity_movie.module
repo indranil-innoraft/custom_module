@@ -1,24 +1,27 @@
 <?php
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Delete nodes associated with the module.
  */
 function custom_entity_movie_delete_nodes() {
   $ids = \Drupal::entityQuery('node')->condition('type', 'movie')->execute();
-$storageHandler = \Drupal::entityTypeManager()->getStorage('node');
-$entities = $storageHandler->loadMultiple($ids);
-foreach ($entities as $entity) {
-  $entity->delete();
-}
+  $storageHandler = \Drupal::entityTypeManager()->getStorage('node');
+  $entities = $storageHandler->loadMultiple($ids);
+  foreach ($entities as $entity) {
+    $entity->delete();
+  }
 }
 
 /**
  * Implements hook_node_view().
  */
-function custom_entity_movie_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $node, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
-  $movie_price = (int) $node->get('field_movie_price')->value;
-  $budget_friendly_movie_price = (int)\Drupal::config('custom_entity_movie.settings')->get('budget_friendly_ammout');
+function custom_entity_movie_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
   if ($node->getType() === 'movie') {
+    $movie_price = (int) $node->get('field_movie_price')->value;
+    $budget_friendly_movie_price = (int) \Drupal::config('custom_entity_movie.settings')->get('budget_friendly_ammout');
     if ($movie_price < $budget_friendly_movie_price) {
       $message = 'The movie is under budget';
     }
@@ -30,6 +33,6 @@ function custom_entity_movie_node_view(array &$build, \Drupal\Core\Entity\Entity
     }
   }
   $build['content'] = [
-  '#markup' => '<b>' . $message . '<br></b>',
+    '#markup' => '<b>' . $message . '<br></b>',
   ];
 }
