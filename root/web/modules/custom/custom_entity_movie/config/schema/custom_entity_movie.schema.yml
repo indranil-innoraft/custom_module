@@ -1,0 +1,29 @@
+custom_entity_movie.award_winning_movie.*:
+  type: config_entity
+  label: Award Winning Movie
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+    description:
+      type: string
+    year:
+      type: string
+      label: year
+    movie_name:
+      type: string
+      label: Movie Name
+
+# Schema for the configuration files of the Movie Entity module.
+custom_entity_movie.settings:
+  type: config_object
+  label: 'Movie Entity settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

@@ -1,0 +1,5 @@
+name: Movie Entity
+type: module
+core_version_requirement: ^9 || ^10
+description: Create a custom entity movie.
+configure: entity.award_winning_movie.collection

@@ -1,0 +1,6 @@
+name: Block API
+type: module
+description: Implementing blocks API.
+package: Custom Module
+core_version_requirement: ^9 || ^10
+configure: block_api.config
