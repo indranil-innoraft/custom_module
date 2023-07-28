@@ -1,0 +1,6 @@
+name: Configuration Form With Ajax
+type: module
+core_version_requirement: ^9 || ^10
+description: Use ajax
+package: Custom Module
+configure: form_with_ajax.config_routing

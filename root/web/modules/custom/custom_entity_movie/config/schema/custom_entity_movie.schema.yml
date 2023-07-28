@@ -1,0 +1,20 @@
+custom_entity_movie.award_winning_movie.*:
+  type: config_entity
+  label: Award Winning Movie
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+    description:
+      type: string
+    year:
+      type: string
+      label: year
+    movie_name:
+      type: string
+      label: Movie Name

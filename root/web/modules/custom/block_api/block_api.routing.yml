@@ -1,0 +1,16 @@
+block_api.greeting:
+  path: '/custom-welcome-page'
+  defaults:
+    _title: 'Greetings'
+    _controller: '\Drupal\block_api\Controller\BlockApiController::build'
+  requirements:
+    _permission: 'administer block_api configuration'
+
+block_api.config:
+  path: '/admin/config/flagship'
+  defaults:
+    _title: 'Flagship Programms'
+    _form: 'Drupal\block_api\Form\ConfigForm'
+  requirements:
+    _permission: 'administer site configuration'
+
