@@ -1,0 +1,19 @@
+uuid: 6e5c1142-4562-4392-8b79-d222489cd8bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movie_body
+    - node.type.article
+id: node.article.field_movie_body
+field_name: field_movie_body
+entity_type: node
+bundle: article
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
