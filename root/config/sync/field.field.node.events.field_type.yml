@@ -1,0 +1,23 @@
+uuid: 4ed6eed8-103f-4868-9ee4-0e4c7a150640
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type
+    - node.type.events
+  module:
+    - options
+_core:
+  default_config_hash: FgKJZrrxjTyMhMAjalgvK0jzVPJCmRYr__sQwKRKRLQ
+id: node.events.field_type
+field_name: field_type
+entity_type: node
+bundle: events
+label: Type
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

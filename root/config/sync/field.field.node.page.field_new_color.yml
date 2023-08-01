@@ -1,0 +1,24 @@
+uuid: 4d0b4c8b-b004-4120-ab48-bcdbfc01a34a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_new_color
+    - node.type.page
+  module:
+    - custom_color
+id: node.page.field_new_color
+field_name: field_new_color
+entity_type: node
+bundle: page
+label: 'New Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: null
+    new_color: '#000000'
+default_value_callback: ''
+settings: {  }
+field_type: new_color

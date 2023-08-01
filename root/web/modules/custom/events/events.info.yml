@@ -1,0 +1,5 @@
+name: Custom Events
+type: module
+package: Custom Module
+core_version_requirement: ^9 || ^10
+description: Implemented events.

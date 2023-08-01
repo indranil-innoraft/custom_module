@@ -1,0 +1,6 @@
+name: One Time Login Link
+type: module
+core_version_requirement: ^9 || ^10
+description: Based on the user id one time login link will generate.
+package: Custom Module
+configure: one_time_login_link.config_route

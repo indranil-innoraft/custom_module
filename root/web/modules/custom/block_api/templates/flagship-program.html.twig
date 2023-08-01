@@ -1,0 +1,19 @@
+<div class='flagship'>
+<div class='wrapper'>
+<h3 class='heading'>-----| FLAGSHIP PROGRAMMES |------</h3>
+<div class='events-data'>
+{% for value in data %}
+<div class='list'>
+<ul>
+	<li><h4>{{ value.title }}<h4></li>
+  <li><div class='bar'></div></li>
+  <li><span class='small-text'>{{ value.label1 }}</span></li>
+  <li class='yello-color'>{{ value.value1 }}</li>
+  <li>{{ value.label2 }}</li>
+<li class='yello-color'>{{ value.value2 }}</li>
+</ul>
+  </div>
+{% endfor %}
+<div>
+</div>
+</div>

@@ -1,0 +1,8 @@
+uuid: 0c59cc51-641b-4b91-a7e3-a912c5818fcd
+langcode: en
+status: true
+dependencies: {  }
+name: skills
+vid: skills
+description: 'add your skill'
+weight: 0

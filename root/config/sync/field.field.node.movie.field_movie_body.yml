@@ -1,0 +1,21 @@
+uuid: 6b2508e1-85e3-4cdf-9f87-e30f0603cee9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movie_body
+    - node.type.movie
+_core:
+  default_config_hash: VtOP-bSKlPMbo9mvaicpupYd6kczjf86tApVzMnmu6E
+id: node.movie.field_movie_body
+field_name: field_movie_body
+entity_type: node
+bundle: movie
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,5 @@
+database_api.event_details_css_libraries:
+  css:
+    theme:
+      css/events-details-style.css: {}
+
