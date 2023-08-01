@@ -6,11 +6,15 @@ dependencies:
     - core.entity_view_mode.node.rss
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_date
+    - field.field.node.article.field_details
     - field.field.node.article.field_image
     - field.field.node.article.field_movie_body
     - field.field.node.article.field_movie_image
     - field.field.node.article.field_movie_price
+    - field.field.node.article.field_skills
     - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - node.type.article
   module:
     - user
@@ -27,8 +31,12 @@ content:
 hidden:
   body: true
   comment: true
+  field_date: true
+  field_details: true
   field_image: true
   field_movie_body: true
   field_movie_image: true
   field_movie_price: true
+  field_skills: true
   field_tags: true
+  field_type: true

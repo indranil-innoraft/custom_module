@@ -1,0 +1,43 @@
+<div class='event-table'>
+	<h3>Counts of events yearly</h3>
+	<table>
+		<tr id="header">
+			<th>Year</th>
+			<th>Event</th>
+		</tr>
+		{% for year, total_event in event_yearly %}
+			<tr>
+				<td>{{ year }}</td>
+				<td>{{ total_event }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<h3>Count of the Events</h3>
+	<table>
+		<tr id="header">
+			<th>Event Name</th>
+			<th>Total</th>
+		</tr>
+		{% for key, value in types_of_event %}
+			<tr>
+				<td>{{ value.field_type_value }}</td>
+				<td>{{ value.event }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<h3>Count of Each Quater</h3>
+	<table>
+		<tr id="header">
+			<th>Quater</th>
+			<th>Total</th>
+		</tr>
+		{% for quater, total_event in event_quaterly %}
+			<tr>
+				<td>{{ quater }}</td>
+				<td>{{ total_event }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>

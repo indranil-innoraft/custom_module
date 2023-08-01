@@ -6,15 +6,21 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_date
+    - field.field.node.article.field_details
     - field.field.node.article.field_image
     - field.field.node.article.field_movie_body
     - field.field.node.article.field_movie_image
     - field.field.node.article.field_movie_price
+    - field.field.node.article.field_skills
     - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - node.type.article
   module:
     - comment
+    - datetime
     - image
+    - options
     - text
     - user
 _core:
@@ -39,6 +45,22 @@ content:
       pager_id: 0
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_details:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_image:
     type: image
@@ -80,6 +102,14 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
+  field_skills:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
   field_tags:
     type: entity_reference_label
     label: above
@@ -87,6 +117,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
     region: content
   links:
     settings: {  }
