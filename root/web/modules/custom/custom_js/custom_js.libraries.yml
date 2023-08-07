@@ -1,0 +1,7 @@
+# Custom module library for general purposes.
+bundle_contact_us_js:
+  js:
+    js/contact_us.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

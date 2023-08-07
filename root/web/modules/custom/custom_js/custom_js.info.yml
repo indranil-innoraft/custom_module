@@ -1,0 +1,5 @@
+name: Js
+type: module
+description: Alter the core functionality using js.
+package: Custom Module
+core_version_requirement: ^9 || ^10
