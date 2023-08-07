@@ -1,0 +1,26 @@
+.content-border {
+  font-style: italic;
+  font-size: 2rem;
+  text-align: center;
+  padding: 2px;
+}
+
+.movie-node-heading {
+  background-color: cadetblue;
+  border-radius: 2px;
+  color: rgb(6, 83, 6);
+}
+
+.justify-wrapper {
+  display: flex;
+  align-items: space-between;
+  justify-content: center;
+  width: 100%;
+}
+
+.custom-hide >b:nth-child(2){
+  color: red;
+  padding: 5px;
+  position: absolute;
+  top: -60px;
+}

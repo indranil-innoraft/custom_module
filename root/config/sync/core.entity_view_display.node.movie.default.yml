@@ -1,0 +1,79 @@
+uuid: e8df55e6-a4ad-4245-8299-5de95f56cd63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.movie.field_city
+    - field.field.node.movie.field_movie_body
+    - field.field.node.movie.field_movie_image
+    - field.field.node.movie.field_movie_price
+    - field.field.node.movie.field_theater
+    - field.field.node.movie.field_time
+    - node.type.movie
+  module:
+    - image
+    - options
+    - user
+_core:
+  default_config_hash: RHaPhGfuGOq0I6AceTW33G1CQFhcXoeFglHPPb1L4qk
+id: node.movie.default
+targetEntityType: node
+bundle: movie
+mode: default
+content:
+  field_city:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_movie_body:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_movie_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_movie_price:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_theater:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_time:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

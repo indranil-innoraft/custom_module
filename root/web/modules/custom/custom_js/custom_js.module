@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_entity_view() or hook_ENTITY_TYPE_view().
+ */
+function custom_js_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'contact_us') {
+    $build['#attached']['library'][] = 'custom_js/bundle_contact_us_js';
+  }
+}

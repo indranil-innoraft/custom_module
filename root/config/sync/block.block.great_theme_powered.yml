@@ -1,0 +1,22 @@
+uuid: 9ae87622-e9e8-4336-9857-8302be3ba3a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - great_theme
+_core:
+  default_config_hash: iggZSiUKz4mYP1YPJ8SsUfFu79HIgOTt6IDy3Up59aM
+id: great_theme_powered
+theme: great_theme
+region: footer
+weight: -10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

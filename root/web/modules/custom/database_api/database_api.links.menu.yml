@@ -1,0 +1,13 @@
+database_api.view_event:
+  title: Event Details
+  description: Event Information.
+  menu_name: main
+  route_name: database_api.event_details
+  weight: 10
+
+database_api.find_taxonomy_term:
+  title: Find Taxonomy
+  description: Taxonomy term finder.
+  menu_name: main
+  route_name: database_api.taxonomy_term_finder
+  weight: 11
