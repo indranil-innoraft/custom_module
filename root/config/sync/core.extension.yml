@@ -16,6 +16,7 @@ module:
   contextual: 0
   custom_color: 0
   custom_entity_movie: 0
+  custom_js: 0
   database_api: 0
   datetime: 0
   dblog: 0
