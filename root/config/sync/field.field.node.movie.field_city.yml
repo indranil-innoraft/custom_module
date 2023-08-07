@@ -1,0 +1,21 @@
+uuid: b205a36d-6fe7-482b-9c8b-f2191f98024b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city
+    - node.type.movie
+  module:
+    - options
+id: node.movie.field_city
+field_name: field_city
+entity_type: node
+bundle: movie
+label: City
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

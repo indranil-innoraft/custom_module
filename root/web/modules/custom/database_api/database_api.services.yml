@@ -1,0 +1,4 @@
+services:
+  database_api.fetching_term:
+    class: Drupal\database_api\FetchingTerm
+    arguments: ['@database']

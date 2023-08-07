@@ -1,0 +1,22 @@
+uuid: 6fc46367-df89-48d9-9870-254630546b22
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - great_theme
+_core:
+  default_config_hash: MhtNdV__HKRTab0ZPjkPNfYL4Ng4UPBucDLoC7Rg5Eo
+id: great_theme_help
+theme: great_theme
+region: header
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

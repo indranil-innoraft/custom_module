@@ -1,0 +1,33 @@
+uuid: 7870324d-b752-41c8-b2d9-0e497a90bd8d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city
+field_name: field_city
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Bangaluru
+      label: Bangaluru
+    -
+      value: Kolkata
+      label: Kolkata
+    -
+      value: Pune
+      label: Pune
+    -
+      value: Delhi
+      label: Delhi
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

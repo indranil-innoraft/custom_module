@@ -1,0 +1,9 @@
+global:
+  css:
+    base:
+      css/base/elements.css: {}
+    component:
+      css/components/node.css: {}
+      css/components/table.css: {}
+    layout:
+      css/layouts/layout.css: {}
