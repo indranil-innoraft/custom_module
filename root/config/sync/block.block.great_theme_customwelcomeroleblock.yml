@@ -1,0 +1,33 @@
+uuid: a1b28ac4-5e6e-4956-ab26-2bb345896795
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_api
+    - system
+    - user
+  theme:
+    - great_theme
+id: great_theme_customwelcomeroleblock
+theme: great_theme
+region: content
+weight: 0
+provider: null
+plugin: block_api_custom_welcome_block
+settings:
+  id: block_api_custom_welcome_block
+  label: 'Custom Welcome Role Block'
+  label_display: visible
+  provider: block_api
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /custom-welcome-page
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated

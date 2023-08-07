@@ -3,12 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.movie.field_city
     - field.field.node.movie.field_movie_body
     - field.field.node.movie.field_movie_image
     - field.field.node.movie.field_movie_price
+    - field.field.node.movie.field_theater
+    - field.field.node.movie.field_time
     - image.style.thumbnail
     - node.type.movie
   module:
+    - conditional_fields
     - image
     - path
 _core:
@@ -21,6 +25,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city:
+    type: options_select
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -47,6 +57,51 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_theater:
+    type: options_select
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        a71cc426-732d-4231-8fd2-6d3a4c06af3f:
+          entity_type: node
+          bundle: movie
+          dependee: field_city
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_time:
+    type: options_select
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        1cbf528e-b011-461f-a90a-085edd1d79e7:
+          entity_type: node
+          bundle: movie
+          dependee: field_theater
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
   path:
     type: path
     weight: 8

@@ -1,0 +1,41 @@
+uuid: c7c9177f-8f94-4f2e-860f-c77bfe4f6201
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.contact_us.field_contact
+    - field.field.node.contact_us.field_describe_the_event
+    - node.type.contact_us
+  module:
+    - entity_reference_revisions
+    - user
+    - webform
+id: node.contact_us.default
+targetEntityType: node
+bundle: contact_us
+mode: default
+content:
+  field_contact:
+    type: webform_entity_reference_entity_view
+    label: above
+    settings:
+      source_entity: true
+      lazy: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_describe_the_event:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
