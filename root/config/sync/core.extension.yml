@@ -57,6 +57,7 @@ module:
   tracer: 0
   twig_tweak: 0
   user: 0
+  view_api_explore: 0
   views_ui: 0
   webform: 0
   webprofiler: 0
