@@ -1,0 +1,25 @@
+uuid: bd73357c-9f7c-4c70-bfeb-5f7aae4403be
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_api
+    - system
+  theme:
+    - great_theme
+id: great_theme_flagship
+theme: great_theme
+region: content
+weight: 0
+provider: null
+plugin: block_api_flagship
+settings:
+  id: block_api_flagship
+  label: Flagship
+  label_display: visible
+  provider: block_api
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /node

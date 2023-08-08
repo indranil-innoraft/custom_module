@@ -1,0 +1,13 @@
+bundle_contact_us_js:
+  js:
+    js/contact_us.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+field_contact_now_js:
+  js:
+    js/field-contact-now.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

@@ -1,0 +1,7 @@
+custom_js.contact_now:
+  path: '/contact-now'
+  defaults:
+    _title: 'Contact now'
+    _form: 'Drupal\custom_js\Form\ContactNowForm'
+  requirements:
+    _permission: 'access content'

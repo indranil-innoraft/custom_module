@@ -1,0 +1,21 @@
+.flex {
+  position: relative;
+  width: 50%;
+  text-align: justify;
+  padding: 20px;
+}
+
+.form-content {
+  position: relative;
+  width: 400px;
+  height: 800px;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+
+.narrow-regin {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 3px;
+  width: 200px;
+}

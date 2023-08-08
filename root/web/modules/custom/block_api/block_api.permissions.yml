@@ -1,0 +1,4 @@
+administer block_api configuration:
+  title: 'Administer block_api configuration'
+  description: 'Optional description.'
+  restrict access: true

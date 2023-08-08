@@ -1,0 +1,33 @@
+uuid: a5ade755-78d7-4e6b-bed0-333b88873307
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_time
+field_name: field_time
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 6PM
+      label: 6PM
+    -
+      value: 8PM
+      label: 8PM
+    -
+      value: 10PM
+      label: 10PM
+    -
+      value: 11AM
+      label: 11AM
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

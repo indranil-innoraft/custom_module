@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Its a view_api_explore module file.
+ */
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function view_api_explore_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->getTitle() === "list of movies") {
+    $query->orderby[0]['direction'] = "DESC";
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function view_api_explore_views_data_alter(array &$data) {
+  $data['taxonomy_index']['relationship_name'] = [
+    'title' => t('Taxonomy Index'),
+    'help' => t('More information about the relationship'),
+    'relationship' => [
+      'base' => 'taxonomy_term_data',
+      'base field' => 'tid',
+      'field' => 'tid',
+      'id' => 'standard',
+      'label' => t('Taxonomy Index'),
+    ],
+  ];
+
+  $data['node_field_data']['relationship_2'] = [
+    'title' => t('users data'),
+    'help' => t('More information about the user'),
+    'relationship' => [
+      'base' => 'users',
+      'base field' => 'uid',
+      'field' => 'uid',
+      'id' => 'standard',
+      'label' => t('User data'),
+    ],
+  ];
+}

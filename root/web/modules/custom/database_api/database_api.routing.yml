@@ -1,0 +1,15 @@
+database_api.event_details:
+  path: '/event/details'
+  defaults:
+    _title: 'Events Information'
+    _controller: '\Drupal\database_api\Controller\EventDetailsController::build'
+  requirements:
+    _permission: 'access content'
+
+database_api.taxonomy_term_finder:
+  path: '/find/taxonomy-term'
+  defaults:
+    _title: 'Taxonomy term finder'
+    _form: 'Drupal\database_api\Form\TaxonomyTermFinder'
+  requirements:
+    _permission: 'access content'

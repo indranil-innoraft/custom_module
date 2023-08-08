@@ -1,0 +1,9 @@
+.label-decoration {
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.heading {
+  color: red;
+  font-size: 1.5rem;
+}

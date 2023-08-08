@@ -1,0 +1,22 @@
+uuid: e238bedd-6ec4-4501-b736-b920cb1b1bac
+langcode: en
+status: true
+dependencies:
+  theme:
+    - great_theme
+_core:
+  default_config_hash: qHdtze2DZ2mFfaJadxjZz6epm92_SN9SAFY4yJGl8Fo
+id: great_theme_local_tasks
+theme: great_theme
+region: header
+weight: 10
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

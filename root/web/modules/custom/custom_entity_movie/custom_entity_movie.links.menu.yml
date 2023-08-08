@@ -1,0 +1,12 @@
+entity.award_winning_movie.overview:
+  title: Award Winning Movies
+  parent: system.admin_structure
+  description: 'List of award winning movies to extend site functionality.'
+  route_name: entity.award_winning_movie.collection
+
+custom_entity_movie.movie_budget:
+  title: Add Budget of the Movies
+  description: will store a budget-friendly mount
+  parent: system.admin
+  route_name: custom_entity_movie.movie_budget
+  weight: 8
